@@ -2,97 +2,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Evidencia2;
+package FormularioEvidencia3;
+
+import Clases.Ip_Ms;
+import Clases.Subredes;
 
 /**
  *
  * @author jaime
  */
-public class FormSubredes extends javax.swing.JFrame {
+
+public class FormularioEvidencia3 extends javax.swing.JFrame {
 
     /**
-     * Creates new form FormSubredes
+     * Creates new form NewJFrame
      */
     
-    public FormSubredes() {
+
+    public FormularioEvidencia3() {
         initComponents();
     }
-    //Función para indicar el nro de subredes que se requerirá
-    public static double nroSubredes (double redesR){
-        double nroS = 0;
-        for (int n=1; n<=23; n++){
-            double nroNr=Math.pow(2,n);
-            if(nroNr>=redesR){
-               nroS = nroNr;
-               break;
-            }
-        }
-        return nroS;
-    };
-    //Función para indicar cuál es el nro N (nro de bits prestados)
-    public static double nroN (double nSubredes){
-        double nroN = 0;
-        for (double i = 1; i<=23; i++){
-            double raizN = 1/i;
-            if (Math.pow(nSubredes, raizN)==2){
-                nroN=i;
-                break;
-            }
-        }
-        return nroN;
-    };
-    //Función para comprobar si se cumple la condición del nro N
-    public static String cumpleCondicion (double redesR, double numSubredes){
-        String cumple;
-        if(numSubredes>=redesR){
-            cumple = "Si cumple";
-        }else{
-            cumple = "No cumple";
-        }
-        return cumple;
-    };
     
-    //Calculo del byte cambiado de la nueva Máscara de subred, nro de saltos
-    public static int cambioByteMs (int nuevoNumN){
-        int restaN = 8-nuevoNumN;
-        int ultByteMs = 0;
-        
-        for (int i=7; i>=restaN;i--){
-            ultByteMs += Math.pow(2, i);
-        }
-        return ultByteMs;
-    }
-        
-    
-    //Funcion para hallar señalar las caracteristicas de nuestras subredes
-    /*public void subredesLoop (int Ip[], int nuevaMs[], int numSaltos, int nuevoNumSubredes){
-        int idIp = 0;
-        int firstIp = 1;
-        int lastIp = numSaltos-2;
-        int ipBroadcast = numSaltos-1;
-        
-        int arraySubred[] = new int[4];
-        arraySubred[0]= idIp;
-        arraySubred[1]= firstIp;
-        arraySubred[2]= lastIp;
-        arraySubred[3]= ipBroadcast;
-        
-        areaRpta.append("\nEl número de subredes es: "+nuevoNumSubredes+"\n");
-        areaRpta.append("\nSubred 1: \n");
-        areaRpta.append("La id de la subred 1 es: "+Ip[0]+"."+Ip[1]+"."+Ip[2]+"."+idIp+"\n");
-        areaRpta.append("La primera IP de la subred 1 es: "+Ip[0]+"."+Ip[1]+"."+Ip[2]+"."+firstIp+"\n");
-        areaRpta.append("La ultima IP de la subred 1 es: "+Ip[0]+"."+Ip[1]+"."+Ip[2]+"."+lastIp+"\n");
-        areaRpta.append("El broadcast de la subred 1 es: "+Ip[0]+"."+Ip[1]+"."+Ip[2]+"."+ipBroadcast+"\n");
-        
-        for(int i=2; i<=(nuevoNumSubredes); i++){
-            areaRpta.append("\nSubred " + i + ": \n");
-            areaRpta.append("La id de la Subred " + i + " es: "+Ip[0]+"."+Ip[1]+"."+Ip[2]+"."+(arraySubred[0]+=numSaltos)+"\n");
-            areaRpta.append("La primera IP de la Subred " + i + " es: "+Ip[0]+"."+Ip[1]+"."+Ip[2]+"."+(arraySubred[1]+=numSaltos)+"\n");
-            areaRpta.append("La ultima IP de la Subred " + i+ " es: "+Ip[0]+"."+Ip[1]+"."+Ip[2]+"."+(arraySubred[2]+=numSaltos)+"\n");
-            areaRpta.append("El broadcast de la Subred " + i + " es: "+Ip[0]+"."+Ip[1]+"."+Ip[2]+"."+(arraySubred[3]+=numSaltos)+"\n");
-        }
-        
-    }*/
     public void subredesLoopA (int Ip[], int nuevaMs[], int numSaltos, int nuevoNumSubredes){
         int firstSIp = 0;
         int lastSIp = numSaltos-1;
@@ -192,6 +122,7 @@ public class FormSubredes extends javax.swing.JFrame {
         
     }
 
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -201,29 +132,45 @@ public class FormSubredes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        areaRpta = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         nSubredesInput = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        n2IP = new javax.swing.JTextField();
-        n3IP = new javax.swing.JTextField();
         n1IP = new javax.swing.JTextField();
         n4IP = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        areaRpta = new javax.swing.JTextArea();
+        n2IP = new javax.swing.JTextField();
+        n3IP = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+
+        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(102, 153, 255));
 
-        jLabel1.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel1.setText("Calculadora de subredes");
+        areaRpta.setColumns(20);
+        areaRpta.setRows(5);
+        jScrollPane1.setViewportView(areaRpta);
 
-        jLabel2.setText("Ingrese el número de subredes que requiera:");
+        jLabel1.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
+        jLabel1.setText("Calculadora de Subredes");
 
-        jLabel3.setText("Ingrese un numero de IP:");
+        jLabel2.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
+        jLabel2.setText("Ingrese el nro de subredes que requiera:");
+
+        nSubredesInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nSubredesInputActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
+        jLabel3.setText("Ingrese un nro de Ip: ");
 
         jLabel4.setText(".");
 
@@ -231,16 +178,13 @@ public class FormSubredes extends javax.swing.JFrame {
 
         jLabel6.setText(".");
 
-        jButton1.setText("Calcular");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setFont(new java.awt.Font("Rockwell", 0, 18)); // NOI18N
+        jButton2.setText("Calcular");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
-
-        areaRpta.setColumns(20);
-        areaRpta.setRows(5);
-        jScrollPane1.setViewportView(areaRpta);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -249,15 +193,19 @@ public class FormSubredes extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
+                        .addGap(184, 184, 184)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(nSubredesInput, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nSubredesInput, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(n1IP, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -270,105 +218,75 @@ public class FormSubredes extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(n4IP, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(n4IP, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(181, 181, 181)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(241, 241, 241)
-                        .addComponent(jButton1)))
-                .addContainerGap(48, Short.MAX_VALUE))
+                        .addGap(254, 254, 254)
+                        .addComponent(jButton2)))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(23, 23, 23)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(nSubredesInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(n2IP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(n3IP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(n4IP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(n1IP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel6)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel3))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(n2IP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(n3IP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(n4IP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(n1IP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jButton2)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void nSubredesInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nSubredesInputActionPerformed
         // TODO add your handling code here:
+    }//GEN-LAST:event_nSubredesInputActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        //Variables
         
         int redesRequeridas = Integer.parseInt(nSubredesInput.getText());
         double redesR= (double)redesRequeridas;
-        //Calculo de nro. de subredes
-        double numSubredes = nroSubredes(redesR);
-        int nuevoNumSubredes = (int)numSubredes;
-        double numN = nroN(numSubredes);
-        int nuevoNumN = (int)numN;
-        String cumpleC=cumpleCondicion(redesRequeridas,numSubredes);
-        
-        //Calculo de la nueva máscara de subred
+        //nro ip
         int[] Ip = {Integer.parseInt(n1IP.getText()),
                     Integer.parseInt(n2IP.getText()),
                     Integer.parseInt(n3IP.getText()),
                     Integer.parseInt(n4IP.getText())
         };
+        Subredes subredes = new Subredes(redesR);
+        Ip_Ms ip_ms= new Ip_Ms(Ip, subredes.getNuevoNumN());
         
-        //Detectar el tipo de ip
-        int[] tipoIp = {126,191,223};
-        String[] tipoIpSArray = {"tipo A","tipo B","tipo C"};
-        String tipoIpS = "";
-        for(int i=0; i<tipoIp.length;i++){
-            if(Ip[0]<=tipoIp[i]){
-                tipoIpS=tipoIpSArray[i];
-                break;
-            }
-        }        
+        double numSubredes = subredes.getNumSubredes();
+        int nuevoNumSubredes = subredes.getNuevoNumSubredes();
+        double numN=subredes.getNumN();
+        int nuevoNumN=subredes.getNuevoNumN();
+        String cumpleC=subredes.cumpleCondicion();
+        String tipoIpS=ip_ms.getTipoIpS();
+        int[] nuevaMs=ip_ms.getNuevaMs();
+        int numSaltos=ip_ms.getNumSaltos();    
+       
         
-        //Array de la Máscara de subred
-        int[] nuevaMs = new int[4];        
-        int[] nuevaMsA = {255,0,0,0};
-        int[] nuevaMsB = {255,255,0,0};
-        int[] nuevaMsC = {255,255,255,0};
+        //Calculo de la nueva máscara de subred
         
-        int numSaltos = 0;
-        //Asignar nueva Mascara de subred segun el tipo de ip
-        //Calculo del ultimo byte de la nueva Máscara de subred, nro de saltos
-        switch(tipoIpS){
-            case "tipo A":
-                nuevaMs = nuevaMsA;
-                nuevaMs[1]=cambioByteMs(nuevoNumN);
-                numSaltos = 256 - nuevaMs[1];
-            break;
-            case "tipo B":
-                nuevaMs = nuevaMsB;
-                nuevaMs[2]=cambioByteMs(nuevoNumN);
-                numSaltos = 256 - nuevaMs[2];
-            break;
-            case "tipo C":
-                nuevaMs = nuevaMsC;
-                nuevaMs[3]=cambioByteMs(nuevoNumN);
-                numSaltos = 256 - nuevaMs[3];
-            break;
-        }      
-        
-
         //Imprimir primera solución
+        areaRpta.setText("Hola! \n");
         areaRpta.append("Usted requiere " + redesRequeridas + " redes.\n");
         areaRpta.append("El número de subredes que le recomendamos es de: " + numSubredes + ", \n");
         areaRpta.append("porque " + cumpleC + " la condición de que el número de subredes sea mayor o igual al nro de redes requeridas. \n");
@@ -390,9 +308,11 @@ public class FormSubredes extends javax.swing.JFrame {
                 subredesLoopC (Ip, nuevaMs, numSaltos, nuevoNumSubredes);
             break;
         }
-        
-        //subredesLoop (Ip, nuevaMs, numSaltos, nuevoNumSubredes);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        /*public JTextField getareaRpta() { return areaRpta }
+        public void setareaRpta(JTextField areaRpta) {
+            this.areaRpta = areaRpta;
+         }*/
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -411,20 +331,21 @@ public class FormSubredes extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormSubredes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormularioEvidencia3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormSubredes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormularioEvidencia3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormSubredes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormularioEvidencia3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormSubredes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormularioEvidencia3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormSubredes().setVisible(true);
+                new FormularioEvidencia3().setVisible(true);
             }
         });
     }
@@ -432,6 +353,7 @@ public class FormSubredes extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea areaRpta;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
