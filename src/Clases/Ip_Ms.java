@@ -13,6 +13,9 @@ public class Ip_Ms {
     int Ip[];
     int[] tipoIp = {126,191,223};
     String[] tipoIpSArray = {"tipo A","tipo B","tipo C"};
+    //cambio ip privada/publica
+    int[] ipPrivadaArray = {10,172,192};
+    
     //Arrays de la Máscara de subred
     int nuevoNumN;
     private int[] nuevaMs = new int[4];        
@@ -22,7 +25,8 @@ public class Ip_Ms {
     
     String tipoIpS;
     int numSaltos;
-
+    //cambio ip privada/publica
+    String ipPrivada;
     
     //constructor
     public Ip_Ms(int[] _Ip, int _nuevoNumN) {
@@ -37,6 +41,12 @@ public class Ip_Ms {
         for(int i=0; i<tipoIp.length;i++){
             if(Ip[0]<=tipoIp[i]){
                 tipoIpStr=tipoIpSArray[i];
+                //cambio ip privada/publica
+                if(Ip[0]==ipPrivadaArray[0]||Ip[0]==ipPrivadaArray[1]||Ip[0]==ipPrivadaArray[2]){
+                        this.ipPrivada="Privada";
+                    }else{
+                        this.ipPrivada="Pública";
+                    }
                 break;
             } 
         }
@@ -96,5 +106,9 @@ public class Ip_Ms {
     public int getNumSaltos() {
         return numSaltos;
     }
-            
+
+    public String getIpPrivada() {
+        return ipPrivada;
+    }
+                
 }

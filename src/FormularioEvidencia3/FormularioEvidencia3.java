@@ -168,15 +168,44 @@ public class FormularioEvidencia3 extends javax.swing.JFrame {
                 nSubredesInputActionPerformed(evt);
             }
         });
+        nSubredesInput.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nSubredesInputKeyTyped(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         jLabel3.setText("Ingrese un nro de Ip: ");
+
+        n1IP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                n1IPKeyTyped(evt);
+            }
+        });
+
+        n4IP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                n4IPKeyTyped(evt);
+            }
+        });
 
         jLabel4.setText(".");
 
         jLabel5.setText(".");
 
         jLabel6.setText(".");
+
+        n2IP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                n2IPKeyTyped(evt);
+            }
+        });
+
+        n3IP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                n3IPKeyTyped(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Rockwell", 0, 18)); // NOI18N
         jButton2.setText("Calcular");
@@ -270,49 +299,137 @@ public class FormularioEvidencia3 extends javax.swing.JFrame {
                     Integer.parseInt(n3IP.getText()),
                     Integer.parseInt(n4IP.getText())
         };
-        Subredes subredes = new Subredes(redesR);
-        Ip_Ms ip_ms= new Ip_Ms(Ip, subredes.getNuevoNumN());
-        
-        double numSubredes = subredes.getNumSubredes();
-        int nuevoNumSubredes = subredes.getNuevoNumSubredes();
-        double numN=subredes.getNumN();
-        int nuevoNumN=subredes.getNuevoNumN();
-        String cumpleC=subredes.cumpleCondicion();
-        String tipoIpS=ip_ms.getTipoIpS();
-        int[] nuevaMs=ip_ms.getNuevaMs();
-        int numSaltos=ip_ms.getNumSaltos();    
-       
-        
-        //Calculo de la nueva máscara de subred
-        
-        //Imprimir primera solución
-        areaRpta.setText("Hola! \n");
-        areaRpta.append("Usted requiere " + redesRequeridas + " redes.\n");
-        areaRpta.append("El número de subredes que le recomendamos es de: " + numSubredes + ", \n");
-        areaRpta.append("porque " + cumpleC + " la condición de que el número de subredes sea mayor o igual al nro de redes requeridas. \n");
-        areaRpta.append("El nro bits prestados (N) es de: " + nuevoNumN+"\n\n");
-        //Imprimir la Ip y nueva MS
-        areaRpta.append("La Ip que escogió es: "+Ip[0]+"."+Ip[1]+"."+Ip[2]+"."+Ip[3]+"\n");
-        areaRpta.append("El tipo de Ip es: " + tipoIpS + "\n");
-        areaRpta.append("La nueva Máscara de Subred es: "+nuevaMs[0]+"."+nuevaMs[1]+"."+nuevaMs[2]+"."+nuevaMs[3]+"\n");
-        areaRpta.append("El nro de saltos es de: "+numSaltos+"\n");
-        
-        switch(tipoIpS){
-            case "tipo A":
-                subredesLoopA (Ip, nuevaMs, numSaltos, nuevoNumSubredes);
-            break;
-            case "tipo B":
-                subredesLoopB (Ip, nuevaMs, numSaltos, nuevoNumSubredes);
-            break;
-            case "tipo C":
-                subredesLoopC (Ip, nuevaMs, numSaltos, nuevoNumSubredes);
-            break;
+        //validaciones de max num de subredes y maximo nro de 1° byte de la ip
+        if(redesRequeridas>256||Ip[0]>223){
+            if(redesRequeridas>256){
+                areaRpta.setText("Hola! \n");
+                areaRpta.append("No puede haber más de 256 subredes. Inténtelo de nuevo.");
+            }else if(Ip[0]>223){
+                areaRpta.setText("Hola! \n");
+                areaRpta.append("El número maximo que se acepta para la primera cifra de la ip es 223");
+            }else if(redesRequeridas>256||Ip[0]>223)
+                areaRpta.setText("Hola! \n");
+                areaRpta.append("No puede haber más de 256 subredes. Inténtelo de nuevo, y");
+                areaRpta.append("El número maximo que se acepta para la primera cifra de la ip es 223");
+        } else{
+            Subredes subredes = new Subredes(redesR);
+            Ip_Ms ip_ms= new Ip_Ms(Ip, subredes.getNuevoNumN());
+
+            double numSubredes = subredes.getNumSubredes();
+            int nuevoNumSubredes = subredes.getNuevoNumSubredes();
+            double numN=subredes.getNumN();
+            int nuevoNumN=subredes.getNuevoNumN();
+            String cumpleC=subredes.cumpleCondicion();
+            String tipoIpS=ip_ms.getTipoIpS();
+            int[] nuevaMs=ip_ms.getNuevaMs();
+            int numSaltos=ip_ms.getNumSaltos();    
+
+
+            //Calculo de la nueva máscara de subred
+
+            //Imprimir primera solución
+            areaRpta.setText("Hola! \n");
+            areaRpta.append("Usted requiere " + redesRequeridas + " redes.\n");
+            areaRpta.append("El número de subredes que le recomendamos es de: " + numSubredes + ", \n");
+            areaRpta.append("porque " + cumpleC + " la condición de que el número de subredes sea mayor o igual al nro de redes requeridas. \n");
+            areaRpta.append("El nro bits prestados (N) es de: " + nuevoNumN+"\n\n");
+            //Imprimir la Ip y nueva MS
+            areaRpta.append("La Ip que escogió es: "+Ip[0]+"."+Ip[1]+"."+Ip[2]+"."+Ip[3]+"\n");
+            //Cambio ip priva/publica
+            areaRpta.append("El tipo de Ip es: " + tipoIpS + " " +ip_ms.getIpPrivada()+"\n");
+            areaRpta.append("La nueva Máscara de Subred es: "+nuevaMs[0]+"."+nuevaMs[1]+"."+nuevaMs[2]+"."+nuevaMs[3]+"\n");
+            areaRpta.append("El nro de saltos es de: "+numSaltos+"\n");
+
+            switch(tipoIpS){
+                case "tipo A":
+                    subredesLoopA (Ip, nuevaMs, numSaltos, nuevoNumSubredes);
+                break;
+                case "tipo B":
+                    subredesLoopB (Ip, nuevaMs, numSaltos, nuevoNumSubredes);
+                break;
+                case "tipo C":
+                    subredesLoopC (Ip, nuevaMs, numSaltos, nuevoNumSubredes);
+                break;
+            }
         }
+        
         /*public JTextField getareaRpta() { return areaRpta }
         public void setareaRpta(JTextField areaRpta) {
             this.areaRpta = areaRpta;
          }*/
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void n1IPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_n1IPKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+        boolean numeros = key >= 48 && key <= 57;
+        //validar caracteres numéricos
+        if (!numeros){
+            evt.consume();
+        }
+
+        //validar numero de caracteres permitidos
+        if(n1IP.getText().length() >= 3){
+            evt.consume();
+        }
+        
+        
+    }//GEN-LAST:event_n1IPKeyTyped
+
+    private void n2IPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_n2IPKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+        boolean numeros = key >= 48 && key <= 57;
+        //validar caracteres numéricos
+        if (!numeros){
+            evt.consume();
+        }
+        if(n2IP.getText().length() >= 3){
+            evt.consume();
+        }
+        /*if(Integer.parseInt(n2IP.getText())>255){
+            evt.consume();
+        }*/
+    }//GEN-LAST:event_n2IPKeyTyped
+
+    private void n3IPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_n3IPKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+        boolean numeros = key >= 48 && key <= 57;
+        //validar caracteres numéricos
+        if (!numeros){
+            evt.consume();
+        }
+        if(n3IP.getText().length() >= 3){
+            evt.consume();
+        }
+    }//GEN-LAST:event_n3IPKeyTyped
+
+    private void n4IPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_n4IPKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+        boolean numeros = key >= 48 && key <= 57;
+        //validar caracteres numéricos
+        if (!numeros){
+            evt.consume();
+        }
+        if(n4IP.getText().length() >= 3){
+            evt.consume();
+        }
+    }//GEN-LAST:event_n4IPKeyTyped
+
+    private void nSubredesInputKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nSubredesInputKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+        boolean numeros = key >= 48 && key <= 57;
+        //validar caracteres numéricos
+        if (!numeros){
+            evt.consume();
+        }
+        if(nSubredesInput.getText().length() >= 3){
+            evt.consume();
+        }
+    }//GEN-LAST:event_nSubredesInputKeyTyped
 
     /**
      * @param args the command line arguments
