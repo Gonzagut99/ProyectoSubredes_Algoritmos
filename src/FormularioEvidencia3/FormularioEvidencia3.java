@@ -373,7 +373,6 @@ public class FormularioEvidencia3 extends javax.swing.JFrame {
             evt.consume();
         }
         
-        
     }//GEN-LAST:event_n1IPKeyTyped
 
     private void n2IPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_n2IPKeyTyped
