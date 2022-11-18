@@ -10,23 +10,23 @@ package Clases;
  */
 public class Ip_Ms {
     //Variables
-    int Ip[];
-    int[] tipoIp = {126,191,223};
-    String[] tipoIpSArray = {"tipo A","tipo B","tipo C"};
+    private int Ip[];
+    private final int[] tipoIp = {126,191,223};
+    private final String[] tipoIpSArray = {"tipo A","tipo B","tipo C"};
     //cambio ip privada/publica
-    int[] ipPrivadaArray = {10,172,192};
+    private final int[] ipPrivadaArray = {10,172,192};
     
     //Arrays de la Máscara de subred
-    int nuevoNumN;
+    private int nuevoNumN;
     private int[] nuevaMs = new int[4];        
-    int[] nuevaMsA = {255,0,0,0};
-    int[] nuevaMsB = {255,255,0,0};
-    int[] nuevaMsC = {255,255,255,0};
+    private final int[] nuevaMsA = {255,0,0,0};
+    private final int[] nuevaMsB = {255,255,0,0};
+    private final int[] nuevaMsC = {255,255,255,0};
     
-    String tipoIpS;
-    int numSaltos;
+    private String tipoIpS;
+    private int numSaltos;
     //cambio ip privada/publica
-    String ipPrivada;
+    private String ipPrivada;
     
     //constructor
     public Ip_Ms(int[] _Ip, int _nuevoNumN) {
@@ -91,9 +91,9 @@ public class Ip_Ms {
            
     
     //Metodos
-    private void main(String[] args) {
+    /*private void main(String[] args) {
         ultByteMs();
-    }
+    }*/
     
     public String getTipoIpS() {
         return tipoIpS;

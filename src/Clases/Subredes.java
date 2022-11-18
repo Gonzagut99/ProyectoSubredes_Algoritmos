@@ -12,12 +12,12 @@ public class Subredes {
 
     //Variables
     //int redesRequeridas = Integer.parseInt(nSubredesInput.getText());
-    double redesR;
+    private double redesR;
     //Calculo de nro. de subredes
-    double numSubredes;
-    int nuevoNumSubredes;
-    double numN;
-    int nuevoNumN;
+    private double numSubredes;
+    private int nuevoNumSubredes;
+    private double numN;
+    private int nuevoNumN;
     
     //constructor
     public Subredes(double _redesR) {
