@@ -329,7 +329,7 @@ public class FormularioEvidencia3 extends javax.swing.JFrame {
             String tipoIpS=ip_ms.getTipoIpS();
             int[] nuevaMs=ip_ms.getNuevaMs();
             int numSaltos=ip_ms.getNumSaltos();
-            int numHost=ip_ms.getNumHost();
+            //int numHost=ip_ms.getNumHost();
 
 
             //Calculo de la nueva máscara de subred
