@@ -89,7 +89,6 @@ public class Ip_Ms {
         return nSaltos;
     }    
            
-    
     //Metodos
     /*private void main(String[] args) {
         ultByteMs();
