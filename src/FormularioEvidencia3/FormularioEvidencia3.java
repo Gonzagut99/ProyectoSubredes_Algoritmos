@@ -323,7 +323,8 @@ public class FormularioEvidencia3 extends javax.swing.JFrame {
             String tipoIpS=ip_ms.getTipoIpS();
             int[] nuevaMs=ip_ms.getNuevaMs();
             int numSaltos=ip_ms.getNumSaltos();    
-
+            //calculo nro de hosts
+            int numHosts=(numSaltos-2)*nuevoNumSubredes;
 
             //Calculo de la nueva máscara de subred
 
@@ -339,6 +340,7 @@ public class FormularioEvidencia3 extends javax.swing.JFrame {
             areaRpta.append("El tipo de Ip es: " + tipoIpS + " " +ip_ms.getIpPrivada()+"\n");
             areaRpta.append("La nueva Máscara de Subred es: "+nuevaMs[0]+"."+nuevaMs[1]+"."+nuevaMs[2]+"."+nuevaMs[3]+"\n");
             areaRpta.append("El nro de saltos es de: "+numSaltos+"\n");
+            areaRpta.append("El nro de hosts es de: "+numHosts+"\n");
 
             switch(tipoIpS){
                 case "tipo A":
