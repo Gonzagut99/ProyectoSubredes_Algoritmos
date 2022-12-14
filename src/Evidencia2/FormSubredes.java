@@ -29,7 +29,7 @@ public class FormSubredes extends javax.swing.JFrame {
         }
         return nroS;
     };
-    //Función para indicar cuál es el nro N
+    //Función para indicar cuál es el nro N (nro de bits prestados)
     public static double nroN (double nSubredes){
         double nroN = 0;
         for (double i = 1; i<=23; i++){
