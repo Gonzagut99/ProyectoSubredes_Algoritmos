@@ -8,10 +8,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
 
-/**
- *
- * @author jaime
- */
 public class FormSubredesTest {
     
     public FormSubredes formSubredes;

@@ -4,23 +4,38 @@
  */
 package Clases;
 
-/**
- *
- * @author jaime
- */
-public class SubredesBloques {
-    /*int Ip[],nuevaMs[];
-    int numSaltos, nuevoNumSubredes;
+import java.util.ArrayList;
 
-    public SubredesBloques(int[] _Ip, int[] _nuevaMs, int _numSaltos, int _nuevoNumSubredes) {
-        this.Ip = _Ip;
-        this.nuevaMs = _nuevaMs;
-        this.numSaltos = _numSaltos;
-        this.nuevoNumSubredes = _nuevoNumSubredes;
+public class SubredesBloques extends InfoSubredes{
+    private String operationSuccess;
+    private String primerBloque;
+    private ArrayList <String> restoBloque;
+
+    public SubredesBloques(int[] Ip, int[] nuevaMs, int numSaltos, int nuevoNumSubredes, String tipoIpS) {
+        super(Ip, nuevaMs, numSaltos, nuevoNumSubredes, tipoIpS);
+        //Inicializamos el arraylist
+        this.restoBloque=new ArrayList<String>();
+        //Invocamos a la funcion 'searchOperation()'
+        this.operationSuccess = searchOperation();
+    }
+    //Detectar que operación se va a realizar
+    private String searchOperation(){
+        String operationSuccess = "\nOperación exitosa!";
+        switch(tipoIpS){
+            case "tipo A":
+                subredesLoopA ();
+            break;
+            case "tipo B":
+                subredesLoopB ();
+            break;
+            case "tipo C":
+                subredesLoopC ();
+            break;
+            }
+        return operationSuccess;
     }
     
-    
-    public void subredesLoopA (){
+    private void subredesLoopA (){
         int firstSIp = 0;
         int lastSIp = numSaltos-1;
         int idIp = 0;
@@ -39,24 +54,27 @@ public class SubredesBloques {
         
         Ip[1]=0;
         
-        
-        areaRpta.append("\nEl número de subredes es: "+nuevoNumSubredes+"\n");
-        areaRpta.append("\nSubred 1: \n");
-        areaRpta.append("La id de la subred 1 es: "+Ip[0]+"."+Ip[1]+"."+firstSIp+"."+idIp+"\n");
-        areaRpta.append("La primera IP de la subred 1 es: "+Ip[0]+"."+Ip[1]+"."+firstSIp+"."+firstIp+"\n");
-        areaRpta.append("La ultima IP de la subred 1 es: "+Ip[0]+"."+Ip[1]+"."+lastSIp+"."+lastIp+"\n");
-        areaRpta.append("El broadcast de la subred 1 es: "+Ip[0]+"."+Ip[1]+"."+lastSIp+"."+ipBroadcast+"\n");
+        this.primerBloque = "\nEl número de subredes es: "+nuevoNumSubredes+"\n"
+                + "\nSubred 1: \n"
+                + "La id de la subred 1 es: "+Ip[0]+"."+Ip[1]+"."+firstSIp+"."+idIp+"\n"
+                + "La primera IP de la subred 1 es: "+Ip[0]+"."+Ip[1]+"."+firstSIp+"."+firstIp+"\n"
+                + "La ultima IP de la subred 1 es: "+Ip[0]+"."+Ip[1]+"."+lastSIp+"."+lastIp+"\n"
+                + "El broadcast de la subred 1 es: "+Ip[0]+"."+Ip[1]+"."+lastSIp+"."+ipBroadcast+"\n";
+                
         
         for(int i=2; i<=(nuevoNumSubredes); i++){
-            areaRpta.append("\nSubred " + i + ": \n");
-            areaRpta.append("La id de la Subred " + i + " es: "+Ip[0]+"."+(arraySubred[0]+=numSaltos)+"."+arraySubred[2]+"."+arraySubred[2]+"\n");
-            areaRpta.append("La primera IP de la Subred " + i + " es: "+Ip[0]+"."+(arraySubred[0])+"."+arraySubred[2]+"."+arraySubred[3]+"\n");
-            areaRpta.append("La ultima IP de la Subred " + i+ " es: "+Ip[0]+"."+(arraySubred[1]+=numSaltos)+"."+arraySubred[4]+"."+arraySubred[4]+"\n");
-            areaRpta.append("El broadcast de la Subred " + i + " es: "+Ip[0]+"."+(arraySubred[1])+"."+arraySubred[5]+"."+arraySubred[5]+"\n");
+            String restoBloqueStr = "\nSubred " + i + ": \n"
+                    + "La id de la Subred " + i + " es: "+Ip[0]+"."+(arraySubred[0]+=numSaltos)+"."+arraySubred[2]+"."+arraySubred[2]+"\n"
+                    + "La primera IP de la Subred " + i + " es: "+Ip[0]+"."+(arraySubred[0])+"."+arraySubred[2]+"."+arraySubred[3]+"\n"
+                    + "La ultima IP de la Subred " + i+ " es: "+Ip[0]+"."+(arraySubred[1]+=numSaltos)+"."+arraySubred[4]+"."+arraySubred[4]+"\n"
+                    + "El broadcast de la Subred " + i + " es: "+Ip[0]+"."+(arraySubred[1])+"."+arraySubred[5]+"."+arraySubred[5]+"\n";
+            
+            //Se añaden o pushean todos los bloques al arraylist
+            restoBloque.add(restoBloqueStr);
         }
         
     }
-    public void subredesLoopB (){
+    private void subredesLoopB (){
         int firstSIp = 0;
         int lastSIp = numSaltos-1;
         int idIp = 0;
@@ -73,24 +91,27 @@ public class SubredesBloques {
         arraySubred[4]= lastIp;
         arraySubred[5]= ipBroadcast;
         
-        
-        areaRpta.append("\nEl número de subredes es: "+nuevoNumSubredes+"\n");
-        areaRpta.append("\nSubred 1: \n");
-        areaRpta.append("La id de la subred 1 es: "+Ip[0]+"."+Ip[1]+"."+firstSIp+"."+idIp+"\n");
-        areaRpta.append("La primera IP de la subred 1 es: "+Ip[0]+"."+Ip[1]+"."+firstSIp+"."+firstIp+"\n");
-        areaRpta.append("La ultima IP de la subred 1 es: "+Ip[0]+"."+Ip[1]+"."+lastSIp+"."+lastIp+"\n");
-        areaRpta.append("El broadcast de la subred 1 es: "+Ip[0]+"."+Ip[1]+"."+lastSIp+"."+ipBroadcast+"\n");
+        this.primerBloque = "\nEl número de subredes es: "+nuevoNumSubredes+"\n"
+                + "\nSubred 1: \n"
+                + "La id de la subred 1 es: "+Ip[0]+"."+Ip[1]+"."+firstSIp+"."+idIp+"\n"
+                + "La primera IP de la subred 1 es: "+Ip[0]+"."+Ip[1]+"."+firstSIp+"."+firstIp+"\n"
+                + "La ultima IP de la subred 1 es: "+Ip[0]+"."+Ip[1]+"."+lastSIp+"."+lastIp+"\n"
+                + "El broadcast de la subred 1 es: "+Ip[0]+"."+Ip[1]+"."+lastSIp+"."+ipBroadcast+"\n";
+
         
         for(int i=2; i<=(nuevoNumSubredes); i++){
-            areaRpta.append("\nSubred " + i + ": \n");
-            areaRpta.append("La id de la Subred " + i + " es: "+Ip[0]+"."+Ip[1]+"."+(arraySubred[0]+=numSaltos)+"."+arraySubred[2]+"\n");
-            areaRpta.append("La primera IP de la Subred " + i + " es: "+Ip[0]+"."+Ip[1]+"."+(arraySubred[0])+"."+arraySubred[3]+"\n");
-            areaRpta.append("La ultima IP de la Subred " + i+ " es: "+Ip[0]+"."+Ip[1]+"."+(arraySubred[1]+=numSaltos)+"."+arraySubred[4]+"\n");
-            areaRpta.append("El broadcast de la Subred " + i + " es: "+Ip[0]+"."+Ip[1]+"."+(arraySubred[1])+"."+arraySubred[5]+"\n");
+            String restoBloqueStr = "\nSubred " + i + ": \n"
+                    + "La id de la Subred " + i + " es: "+Ip[0]+"."+Ip[1]+"."+(arraySubred[0]+=numSaltos)+"."+arraySubred[2]+"\n"
+                    + "La primera IP de la Subred " + i + " es: "+Ip[0]+"."+Ip[1]+"."+(arraySubred[0])+"."+arraySubred[3]+"\n"
+                    + "La ultima IP de la Subred " + i+ " es: "+Ip[0]+"."+Ip[1]+"."+(arraySubred[1]+=numSaltos)+"."+arraySubred[4]+"\n"
+                    + "El broadcast de la Subred " + i + " es: "+Ip[0]+"."+Ip[1]+"."+(arraySubred[1])+"."+arraySubred[5]+"\n";
+            
+            restoBloque.add(restoBloqueStr);
+
         }
         
     }
-    public void subredesLoopC (){
+    private void subredesLoopC (){
         int idIp = 0;
         int firstIp = 1;
         int lastIp = numSaltos-2;
@@ -102,21 +123,37 @@ public class SubredesBloques {
         arraySubred[2]= lastIp;
         arraySubred[3]= ipBroadcast;
         
-        areaRpta.append("\nEl número de subredes es: "+nuevoNumSubredes+"\n");
-        areaRpta.append("\nSubred 1: \n");
-        areaRpta.append("La id de la subred 1 es: "+Ip[0]+"."+Ip[1]+"."+Ip[2]+"."+idIp+"\n");
-        areaRpta.append("La primera IP de la subred 1 es: "+Ip[0]+"."+Ip[1]+"."+Ip[2]+"."+firstIp+"\n");
-        areaRpta.append("La ultima IP de la subred 1 es: "+Ip[0]+"."+Ip[1]+"."+Ip[2]+"."+lastIp+"\n");
-        areaRpta.append("El broadcast de la subred 1 es: "+Ip[0]+"."+Ip[1]+"."+Ip[2]+"."+ipBroadcast+"\n");
+        this.primerBloque = "\nEl número de subredes es: "+nuevoNumSubredes+"\n"
+                + "\nSubred 1: \n"
+                + "La id de la subred 1 es: "+Ip[0]+"."+Ip[1]+"."+Ip[2]+"."+idIp+"\n"
+                + "La primera IP de la subred 1 es: "+Ip[0]+"."+Ip[1]+"."+Ip[2]+"."+firstIp+"\n"
+                + "La ultima IP de la subred 1 es: "+Ip[0]+"."+Ip[1]+"."+Ip[2]+"."+lastIp+"\n"
+                + "El broadcast de la subred 1 es: "+Ip[0]+"."+Ip[1]+"."+Ip[2]+"."+ipBroadcast+"\n";
+
         
         for(int i=2; i<=(nuevoNumSubredes); i++){
-            areaRpta.append("\nSubred " + i + ": \n");
-            areaRpta.append("La id de la Subred " + i + " es: "+Ip[0]+"."+Ip[1]+"."+Ip[2]+"."+(arraySubred[0]+=numSaltos)+"\n");
-            areaRpta.append("La primera IP de la Subred " + i + " es: "+Ip[0]+"."+Ip[1]+"."+Ip[2]+"."+(arraySubred[1]+=numSaltos)+"\n");
-            areaRpta.append("La ultima IP de la Subred " + i+ " es: "+Ip[0]+"."+Ip[1]+"."+Ip[2]+"."+(arraySubred[2]+=numSaltos)+"\n");
-            areaRpta.append("El broadcast de la Subred " + i + " es: "+Ip[0]+"."+Ip[1]+"."+Ip[2]+"."+(arraySubred[3]+=numSaltos)+"\n");
+            String restoBloqueStr = "\nSubred " + i + ": \n"
+                    + "La id de la Subred " + i + " es: "+Ip[0]+"."+Ip[1]+"."+Ip[2]+"."+(arraySubred[0]+=numSaltos)+"\n"
+                    + "La primera IP de la Subred " + i + " es: "+Ip[0]+"."+Ip[1]+"."+Ip[2]+"."+(arraySubred[1]+=numSaltos)+"\n"
+                    + "La ultima IP de la Subred " + i+ " es: "+Ip[0]+"."+Ip[1]+"."+Ip[2]+"."+(arraySubred[2]+=numSaltos)+"\n"
+                    + "El broadcast de la Subred " + i + " es: "+Ip[0]+"."+Ip[1]+"."+Ip[2]+"."+(arraySubred[3]+=numSaltos)+"\n";
+            
+            restoBloque.add(restoBloqueStr);
+
         }
         
-    }*/
+    }
+
+    public String getOperationSuccess() {
+        return operationSuccess;
+    }
+
+    public String getPrimerBloque() {
+        return primerBloque;
+    }
+
+    public ArrayList<String> getRestoBloque() {
+        return restoBloque;
+    }
 
 }

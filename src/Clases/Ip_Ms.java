@@ -4,10 +4,6 @@
  */
 package Clases;
 
-/**
- *
- * @author jaime
- */
 public class Ip_Ms {
     //Variables
     private int Ip[];
@@ -35,18 +31,38 @@ public class Ip_Ms {
         this.tipoIpS=tipoIpS();
         this.numSaltos = ultByteMs();
     }
-    //Detectar el tipo de ip
+    //Detectar el tipo de ip y si es privada o publica
     private String tipoIpS(){
         String tipoIpStr = "";
+        //rango del 2do byte de las ips privadas clase B
+        int ipPrivB[]= {16,31};
+        //2 byte de las ip privada clase C
+        int ipPrivC = 168;
+        
         for(int i=0; i<tipoIp.length;i++){
             if(Ip[0]<=tipoIp[i]){
                 tipoIpStr=tipoIpSArray[i];
-                //cambio ip privada/publica
-                if(Ip[0]==ipPrivadaArray[0]||Ip[0]==ipPrivadaArray[1]||Ip[0]==ipPrivadaArray[2]){
+                switch(tipoIpStr){
+                    case "tipo A":
+                        this.ipPrivada=(Ip[0]==ipPrivadaArray[0])?"Privada":"Pública";
+                        /*if(Ip[0]==ipPrivadaArray[0]){
+                            this.ipPrivada="Privada";
+                        }else{this.ipPrivada="Pública";}*/
+                    break;
+                    case "tipo B":
+                        this.ipPrivada=(Ip[0]==ipPrivadaArray[1]&&Ip[1]>=ipPrivB[0]&&Ip[1]<=ipPrivB[1])?"Privada":"Pública";
+                    break;
+                    case "tipo C":
+                        this.ipPrivada=(Ip[0]==ipPrivadaArray[2]&&Ip[1]==ipPrivC)?"Privada":"Pública";
+                    break;
+                }
+                /*//cambio ip privada/publica
+                if(Ip[0]==ipPrivadaArray[0]||(Ip[0]==ipPrivadaArray[1])||Ip[0]==ipPrivadaArray[2]){
                         this.ipPrivada="Privada";
                     }else{
                         this.ipPrivada="Pública";
-                    }
+                    }*/
+                //Este break es importante
                 break;
             } 
         }
@@ -88,11 +104,6 @@ public class Ip_Ms {
         }
         return nSaltos;
     }    
-           
-    //Metodos
-    /*private void main(String[] args) {
-        ultByteMs();
-    }*/
     
     public String getTipoIpS() {
         return tipoIpS;
