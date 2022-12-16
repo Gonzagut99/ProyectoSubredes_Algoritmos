@@ -4,10 +4,6 @@
  */
 package Clases;
 
-/**
- *
- * @author jaime
- */
 public class Subredes {
 
     //Variables
