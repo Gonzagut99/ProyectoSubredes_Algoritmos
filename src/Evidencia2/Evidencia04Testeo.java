@@ -105,4 +105,5 @@ public String cumpleCondicion (double NumSubredes, double redesrecom){
         }
         return nSaltos;
     };
+        
 }
